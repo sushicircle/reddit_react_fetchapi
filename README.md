@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Jenkins
 
-In the project directory, you can run:
+it's run with jenkins
 
 ### `npm start`
 
@@ -16,6 +16,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+## todo
+
+implement tests to run
 
 ## Learn More
 
