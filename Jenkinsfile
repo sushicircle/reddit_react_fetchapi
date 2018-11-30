@@ -15,7 +15,7 @@ pipeline {
     stage('Dependencies') {
       steps {
         echo 'Installing ...'
-        sh 'sudo yum install java-1.8.0-openjdk'
+        sh 'yum install java-1.8.0-openjdk'
       }
     }
     stage('Build') {
