@@ -48,40 +48,40 @@ pipeline {
             }
         }
     }   
-    /*
+    
     stage('DeployProduction') {
       when {
         branch 'master'
       }
-      steps {
-        input 'Ok with staging'
-        milestone(1)
-        withCredentials([usernamePassword(credentialsID: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-          sshPublisher(
-             failOnError: true,
-             continueOnError: false,
-             publishers: [
-               sshPublisherDesc(
-                 configName: 'production',
-                 sshCredentials: [
-                   username: "$USERNAME",
-                   encryptedPassphrase: "$USERPASS"
-                   ],
-                 transfers: [
-                   sshTransfer(
-                     sourceFiles: 'dist/fetchapi.zip',
-                     removePrefix: 'dist/',
-                     remoteDirectory: '/tmp',
-                     execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
-                   )
-                 ]
+        steps {
+          input 'Ok with stage?'
+          milestone(1)
+            withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                sshPublisher(
+                    failOnError: true,
+                    continueOnError: false,
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'staging',
+                            sshCredentials: [
+                                username: "$USERNAME",
+                                encryptedPassphrase: "$USERPASS"
+                            ], 
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: 'dist/fetchapi.zip',
+                                    removePrefix: 'dist/',
+                                    remoteDirectory: '/tmp',
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                )
+                            ]
+                        )
+                    ]
                 )
-              ]
-            )
-          }
-       }
+            }
+        }
     }
-    */
+    
     /* using gradle now
     stage('Install dependencies') {
       steps {
