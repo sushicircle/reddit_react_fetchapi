@@ -18,36 +18,36 @@ pipeline {
         archiveArtifacts artifacts: 'dist/fetchapi.zip'
       }
     }
-    stage('DeployStaging') {
-      when {
-        branch 'master'
-      }
-      steps {
-        withCredentials([usernamePassword(credentialsID: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-          sshPublisher(
-             failOnError: true,
-             continueOnError: false,
-             publishers: [
-               sshPublisherDesc(
-                 configName: 'staging',
-                 sshCredentials: [
-                   username: "$USERNAME",
-                   encryptedPassphrase: "$USERPASS"
-                   ],
-                 transfers: [
-                   sshTransfer(
-                     sourceFiles: 'dist/fetchapi.zip',
-                     removePrefix: 'dist/',
-                     remoteDirectory: '/tmp',
-                     execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
-                   )
-                 ]
+    stage('DeployToStaging') {
+        when {
+            branch 'master'
+        }
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                sshPublisher(
+                    failOnError: true,
+                    continueOnError: false,
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'staging',
+                            sshCredentials: [
+                                username: "$USERNAME",
+                                encryptedPassphrase: "$USERPASS"
+                            ], 
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: 'dist/fetchapi.zip',
+                                    removePrefix: 'dist/',
+                                    remoteDirectory: '/tmp',
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                )
+                            ]
+                        )
+                    ]
                 )
-              ]
-            )
-          }
-       }
-    }    
+            }
+        }
+    }   
     /*
     stage('DeployProduction') {
       when {
