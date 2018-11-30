@@ -48,6 +48,7 @@ pipeline {
           }
        }
     }    
+    /*
     stage('DeployProduction') {
       when {
         branch 'master'
@@ -80,7 +81,7 @@ pipeline {
           }
        }
     }
-    
+    */
     /* using gradle now
     stage('Install dependencies') {
       steps {
