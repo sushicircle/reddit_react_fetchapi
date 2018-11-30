@@ -18,7 +18,8 @@ node {
 }
 
 //declare a build task
-task build
+//task build
+task run
 
 //declare a task to create a zip of the app
 task zip(type: Zip) {
