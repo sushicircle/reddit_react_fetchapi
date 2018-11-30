@@ -12,12 +12,6 @@ pipeline {
       }
     }
     */
-    stage('Dependencies') {
-      steps {
-        echo 'Installing ...'
-        sh 'sudo yum install java-1.8.0-openjdk'
-      }
-    }
     stage('Build') {
       steps {
         echo 'Build'
@@ -30,6 +24,7 @@ pipeline {
             branch 'master'
         }
         steps {
+          sh 'sudo yum install java-1.8.0-openjdk'
             withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                 sshPublisher(
                     failOnError: true,
@@ -62,6 +57,7 @@ pipeline {
       }
         steps {
           input 'Ok with stage?'
+          sh 'sudo yum install java-1.8.0-openjdk'
           milestone(1)
             withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                 sshPublisher(
