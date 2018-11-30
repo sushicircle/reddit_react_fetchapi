@@ -9,9 +9,11 @@ pipeline {
       steps {
         echo 'Cloning from git'
         git 'https://github.com/sushicircle/reddit_react_fetchapi.git'
+        sh 'sudo yum install java-1.8.0-openjdk'
       }
     }
     */
+    
     stage('Build') {
       steps {
         echo 'Build'
@@ -24,7 +26,6 @@ pipeline {
             branch 'master'
         }
         steps {
-          sh 'sudo yum install java-1.8.0-openjdk'
             withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                 sshPublisher(
                     failOnError: true,
@@ -41,7 +42,7 @@ pipeline {
                                     sourceFiles: 'dist/fetchapi.zip',
                                     removePrefix: 'dist/',
                                     remoteDirectory: '/tmp',
-                                  //  execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
                                 )
                             ]
                         )
@@ -57,7 +58,6 @@ pipeline {
       }
         steps {
           input 'Ok with stage?'
-          sh 'sudo yum install java-1.8.0-openjdk'
           milestone(1)
             withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                 sshPublisher(
@@ -75,7 +75,7 @@ pipeline {
                                     sourceFiles: 'dist/fetchapi.zip',
                                     removePrefix: 'dist/',
                                     remoteDirectory: '/tmp',
-                                  //  execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
                                 )
                             ]
                         )
