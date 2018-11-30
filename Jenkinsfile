@@ -80,6 +80,8 @@ pipeline {
           }
        }
     }
+    
+    /* using gradle now
     stage('Install dependencies') {
       steps {
         echo 'Install dependencies ...'
@@ -92,6 +94,7 @@ pipeline {
           echo 'no tests need running'
          //sh 'npm test'
       }
-    }      
+    }
+    */
   }
 }
