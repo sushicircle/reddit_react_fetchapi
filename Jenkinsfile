@@ -42,7 +42,7 @@ pipeline {
                                     sourceFiles: 'dist/fetchapi.zip',
                                     removePrefix: 'dist/',
                                     remoteDirectory: '/tmp',
-                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi'
                                 )
                             ]
                         )
@@ -75,7 +75,7 @@ pipeline {
                                     sourceFiles: 'dist/fetchapi.zip',
                                     removePrefix: 'dist/',
                                     remoteDirectory: '/tmp',
-                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi && sudo /usr/bin/systemctl start fetchapi'
+                                    execCommand: 'sudo /usr/bin/systemctl stop fetchapi && rm -rf /opt/fetchapi/* && unzip /tmp/fetchapi.zip -d /opt/fetchapi'
                                 )
                             ]
                         )
