@@ -9,6 +9,7 @@
 plugins {
   //include nodeJS
   id "com.moowork.node" version "1.2.0"
+  id "com.palantir.npm-run" version "0.5.0"
 }
 
 node {
@@ -19,13 +20,6 @@ node {
 
 //declare a build task
 task build
-
-npmRun {
-    clean       "other-clean"       // defaults to "clean"
-    test        "react-scripts build"        // defaults to "test"
-    build       "other-build"       // defaults to "build"
-    buildDev    "other-buildDev"    // defaults to "buildDev"
-}
 
 
 //declare a task to create a zip of the app
