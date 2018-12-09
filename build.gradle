@@ -40,4 +40,3 @@ task zip(type: Zip) {
 }
 zip
 npmInstall
-npmRun
