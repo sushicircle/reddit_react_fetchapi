@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: reddit_react_fetchapi
+spec:
+  type: NodePort
+  selector:
+    app: reddit_react_fetchapi
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 8080
+
+
+---
+
+apiVersion: extensions/v1alpha3
+kind: Deployment
+metadata:
+  name: reddit_react_fetchapi-deploy
+  labels:
+    app: reddit_react_fetchapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: reddit_react_fetchapi
+  template:
+    metadata:
+      labels:
+        app: reddit_react_fetchapi
+    spec:
+      containers:
+      - name: reddit_react_fetchapi
+        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
+        ports:
+- containerPort: 8080
