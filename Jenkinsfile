@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build'
-                echp "Branch: ${env.BRANCH_NAME}"
+                echo "Branch: ${env.BRANCH_NAME}"
                 sh 'npm install'
                // sh './gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/fetchapi.zip'
