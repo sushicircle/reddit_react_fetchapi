@@ -1,10 +1,11 @@
+
 pipeline {
   agent any
-   
+    /*
   tools {nodejs "node"}
-    
+    */
   stages {
-      
+        /*
     stage('Cloning Git') {
       steps {
         echo 'Cloning from git'
@@ -12,8 +13,8 @@ pipeline {
         sh 'sudo yum install java-1.8.0-openjdk'
       }
     }
-   
-    /*
+    */
+    
     stage('Build') {
       steps {
         echo 'Build'
@@ -85,15 +86,14 @@ pipeline {
         }
     }
     
-    
-     using gradle now*/
+    /* using gradle now
     stage('Install dependencies') {
       steps {
         echo 'Install dependencies ...'
         sh 'npm install'
       }
     }
-     /*
+     
     stage('Test') {
       steps {
           echo 'no tests need running'
