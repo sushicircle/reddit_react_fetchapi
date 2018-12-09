@@ -33,4 +33,3 @@ task zip(type: Zip) {
 }
 zip
 npmInstall
-npm start
