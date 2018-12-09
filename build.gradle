@@ -21,6 +21,12 @@ node {
 //declare a build task
 task build
 
+npmRun {
+    clean       "react-scripts start"       // defaults to "clean"
+    test        "other-test"        // defaults to "test"
+    build       "react-scripts build"       // defaults to "build"
+    buildDev    "other-buildDev"    // defaults to "buildDev"
+}
 
 //declare a task to create a zip of the app
 task zip(type: Zip) {
