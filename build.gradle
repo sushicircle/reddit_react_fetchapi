@@ -23,7 +23,6 @@ node {
 
 npmRun {
     clean       "other-clean"       // defaults to "clean"
-    test        "react-scripts test"        // defaults to "test"
     build       "react-scripts build"       // defaults to "build"
     buildDev    "other-buildDev"    // defaults to "buildDev"
 }
