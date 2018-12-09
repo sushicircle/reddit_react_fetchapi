@@ -31,7 +31,6 @@ task zip(type: Zip) {
 	destinationDir(file("dist"))
 	baseName "fetchapi"
 }
-start.dependsOn zip
-zip.dependsOn npm_start
-npm_start.dependsOn
-npm_start.dependsOn npmInstall
+zip
+npmInstall
+npm start
